@@ -1,0 +1,612 @@
+{% load static %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Expletus+Sans:ital,wght@0,400..700;1,400..700&family=Freehand&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parisienne&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Expletus+Sans:ital,wght@0,400..700;1,400..700&family=Fredoka:wght@300..700&family=Freehand&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oxygen:wght@300;400;700&family=Parisienne&display=swap');
+
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    /* transform: translateX(-50%); */
+    width: 100vw;
+    /* `100vw` সরিয়ে স্ট্যান্ডার্ড `100%` ব্যবহার করা হলো */
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    z-index: 1000;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease-in-out;
+    animation: slide-up 1s ease-in-out forwards;
+
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(80px);
+      transition: opacity .3s ease-in-out;
+
+
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  /* General Slide-Up Animation Style */
+
+  .slide-up.show {
+    animation: slide-up .5s ease-in-out forwards;
+    animation-delay: var(--d, 0s);
+  }
+
+  /* Transparent স্টেট */
+  .navbar.transparent,
+  .submenu-1.transparent {
+    background-color: transparent;
+    box-shadow: 1px 1px 1px 10px rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Scrolled স্টেট */
+  .navbar.scrolled,
+  .submenu-1.scrolled {
+    background-color: #333;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .sub-page .navbar {
+    background-color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+  }
+
+  .navbar-logo img {
+    height: 50px;
+  }
+
+  /* Navbar links */
+  .navbar-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    position: relative;
+  }
+
+  .navbar-links li a {
+
+    font-weight: 500;
+    padding: 0px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-family: "Montserrat", serif !important;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    border: 1px solid rgba(0, 0, 0, 0);
+    transition: color .3s ease-in-out, border .3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+  }
+
+
+  .navbar-links li a:focus,
+  .navbar-links li a:hover {
+    color: #fff;
+  }
+
+  .navbar-links li a:focus:after,
+  .navbar-links li a:hover:after {
+    width: 100%;
+    left: 0;
+  }
+
+  .navbar-links li a:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
+
+
+  /* Toggle button for mobile */
+  .navbar-toggler {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1100;
+    backdrop-filter: blur(30px);
+
+  }
+
+  .navbar-toggler .hamburger {
+    display: inline-block;
+    color: white;
+    scale: 1.9;
+
+  }
+
+  .navbar-toggler .close-btn {
+    display: none;
+    color: white;
+    background: none;
+    padding: 0;
+
+  }
+
+  .navbar-links .service {
+    /* position: relative; */
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    /* border: 1px solid white; */
+    margin: 0;
+  }
+
+  .service-1 {
+    display: inline-block;
+    padding: 10px 20px;
+
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* Submenu styles */
+  .submenu-1 {
+    padding: 0;
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* transform: translateX(-50%); */
+
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1000;
+    right: -50px;
+    width: 531px;
+    margin: 0;
+    align-items: center;
+    padding: 2rem .5rem .5rem 0;
+
+
+  }
+
+
+  .submenu-1 a {
+    display: flex;
+    align-items: center;
+    text-align: start;
+    text-decoration: none;
+    color: #333;
+    padding: 7px 0 !important;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px !important;
+    border: 1px solid rgba(252, 252, 252, 0);
+    transition: background-color 0.3s ease;
+    flex: 0 0 calc(50% - 10px);
+    text-transform: capitalize !important;
+    color: white;
+
+  }
+
+  .submenu-1 a:focus,
+  .submenu-1 a:hover {
+    color: #fff;
+  }
+
+  .submenu-1 a:focus:after,
+  .submenu-1 a:hover:after {
+    width: calc(100% - 18px) !important;
+    left: 18px !important;
+  }
+
+  .submenu-1 a:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
+
+
+
+
+  .navbar-links .service:hover .submenu-1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 0 0 calc(50% - 10px);
+
+
+  }
+
+  /* .navbar-links .service .submenu-1 a:hover {
+    background-color: #5e5e5e;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0);
+
+  } */
+
+  /* Media Query for Mobile */
+  @media screen and (max-width: 1080px) {
+    .navbar {
+      padding: 10px 20px;
+    }
+
+    .navbar-logo {
+
+      scale: 0.93;
+
+    }
+
+    .navbar-links .service:hover .submenu-1 {
+      width: 511px;
+
+    }
+
+    .navbar-links .service .submenu-1 a {
+      font-size: 15px;
+      /* border: 1px solid white; */
+      flex: 0 0 calc(47% - 10px);
+    }
+
+
+
+    .navbar-links {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .navbar-links a {
+
+      padding: 6px 10px;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-size: 14px;
+      border: 1px solid rgba(0, 0, 0, 0);
+      transition: color .3s ease-in-out, border .3s ease-in-out;
+    }
+
+
+
+
+  }
+
+  /* @media screen and (max-width: 880px) {
+    .navbar{
+      padding: 10px 20px; 
+    }
+    .navbar-logo {
+      margin-left: -20px;
+      scale: 0.85;
+
+    }
+
+
+
+    .navbar-links a {
+
+      padding: 6px 5px;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-size: 14px;
+      text-transform: uppercase;
+      border: 1px solid rgba(0, 0, 0, 0);
+      transition: color .3s ease-in-out, border .3s ease-in-out;
+    }
+
+    .navbar-links .service:hover .submenu-1 {
+      width: 452px;
+
+    }
+
+    .navbar-links .service .submenu-1 a {
+      font-size: 14px;
+      flex: 0 0 calc(47% - 10px);
+    }
+
+
+  } */
+
+  /* @media screen and (max-width: 880px) {
+    .navbar-logo {
+
+      scale: 0.8;
+
+    }
+
+    .navbar-links a {
+
+      padding: 6px 5px;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-size: 13px;
+      text-transform: uppercase;
+      border: 1px solid rgba(0, 0, 0, 0);
+      transition: color .3s ease-in-out, border .3s ease-in-out;
+    }
+
+    .navbar-links .service:hover .submenu-1 {
+      width: 424px;
+
+    }
+
+    .navbar-links .service .submenu-1 a {
+      font-size: 13px;
+      flex: 0 0 calc(47% - 10px);
+    }
+
+  }
+
+ */
+
+
+  @media screen and (max-width: 880px) {
+    .navbar {
+
+      height: 80px;
+
+      background-color: black;
+      padding: 10px 30px;
+
+    }
+
+    .navbar-logo {
+      font-weight: 550;
+      font-size: 30px;
+      scale: 1;
+    }
+
+    .navbar-logo img {
+      height: 45px;
+      margin-right: 3px;
+    }
+
+    .navbar-links .service:hover .submenu-1 {
+      width: 90%;
+      opacity: 1;
+
+    }
+
+    .navbar-links .service .submenu-1 a {
+      font-size: 13px;
+    }
+
+
+    .navbar-toggler {
+      display: block;
+
+    }
+
+    .navbar-links {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 95vh;
+      background-color: rgba(0, 0, 0, 0.884);
+      backdrop-filter: blur(450px);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(110%);
+      transition: transform 0.4s ease;
+      border-radius: 15px;
+    }
+
+    .navbar-links .service:hover .submenu-1 {
+      display: none;
+    }
+
+
+
+    .navbar-links.active {
+      transform: translateX(0);
+
+
+    }
+
+    .navbar-toggler .hamburger {
+      display: inline-block;
+      /* font-size: 70px; */
+    }
+
+    .navbar-toggler .close-btn {
+      display: none;
+      font-size: 50px;
+
+    }
+
+    .navbar-toggler.active .hamburger {
+      display: none;
+    }
+
+    .navbar-toggler.active .close-btn {
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar-links li {
+      margin: 20px 0;
+
+    }
+
+    .navbar-links li {
+      font-size: 18px;
+    }
+
+    .navbar-links a {
+      font-weight: 650;
+
+    }
+  }
+</style>
+<nav class="navbar">
+  <a class="navbar-logo" href="{% url 'home' %}" style="text-decoration: none;">
+    <!-- <img src='{% static "images/v28_2.png" %}' alt="Logo" class="logo"> -->
+    <span class="brand-name">MARKETEASE.</span>
+  </a>
+
+  <!-- Toggle Button for Mobile -->
+  <button class="navbar-toggler" id="navbarToggle">
+    <span class="hamburger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-grid" viewBox="0 0 16 16">
+        <path
+          d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
+      </svg></span>
+    <span class="close-btn">&times;</span>
+  </button>
+
+  <ul class="navbar-links" id="navbarLinks">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li class="service">
+      <a class="service-1 " href="{% url 'service' %}" {%if 'service' in request.path%}
+        style=" color: wheat; border-bottom: 1px solid wheat; " {%endif%}>Services</a>
+      <div class="submenu-1">
+        {% for i in service %}
+        <a href="{{ i.url }}"> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17 " fill="currentColor"
+            class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+          </svg> {{ i.heading }}</a>
+        {% endfor %}
+      </div>
+    </li>
+    <li><a href='{% url "projects" %}' {%if 'projects' in request.path%}
+        style=" color: wheat; border-bottom: 1px solid wheat; " {%endif%}>Projects</a></li>
+    <li><a href="{% url 'blog' %}" {%if 'blog' in request.path%} style=" color: wheat; border-bottom: 1px solid wheat; "
+        {%endif%}>Blog</a></li>
+    <li><a href="{% url 'about' %}" {%if 'about' in request.path%}
+        style=" color: wheat; border-bottom: 1px solid wheat; " {%endif%}>About Us</a></li>
+    <li><a href="{% url 'contact' %}" {%if 'contact' in request.path%}
+        style=" color: wheat; border-bottom: 1px solid wheat; " {%endif%}>Contact</a></li>
+  </ul>
+</nav>
+<script>
+  const navbarToggle = document.getElementById('navbarToggle');
+  const navbarLinks = document.getElementById('navbarLinks');
+
+  navbarToggle.addEventListener('click', () => {
+    navbarLinks.classList.toggle('active');
+    navbarToggle.classList.toggle('active');
+  });
+
+
+
+
+</script>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    const submenu = document.querySelector('.submenu-1');
+    const isLandingPage = document.body.classList.contains('landing-page');
+
+    // Debugging: Check if elements are selected
+    console.log('Navbar:', navbar);
+    console.log('Submenu:', submenu);
+
+    if (isLandingPage) {
+      if (window.scrollY > 150) {
+        // Debugging: Check scroll state
+        console.log('Scroll Y:', window.scrollY);
+
+        // Navbar
+        if (navbar) {
+          navbar.classList.add('scrolled');
+          navbar.classList.remove('transparent');
+        }
+        // Submenu
+        if (submenu) {
+          submenu.classList.add('scrolled');
+          submenu.classList.remove('transparent');
+        }
+      } else {
+        // Navbar
+        if (navbar) {
+          navbar.classList.remove('scrolled');
+          navbar.classList.add('transparent');
+        }
+        // Submenu
+        if (submenu) {
+          submenu.classList.remove('scrolled');
+          submenu.classList.add('transparent');
+        }
+      }
+    }
+  });
+
+
+</script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const slideUpElements = document.querySelectorAll(".slide-up");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    });
+
+    slideUpElements.forEach((el) => observer.observe(el));
+  });
+
+</script>

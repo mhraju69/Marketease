@@ -1,0 +1,359 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="icon" type="image/png" href="/static/images/v28_2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+            /* border: 1px solid black; */
+        }
+
+        body {
+            position: relative;
+            width: 100vw;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+
+        }
+
+        .blog {
+            
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 100%;
+
+
+        }
+
+        .title {
+            margin-top: 5rem;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            /* border: 1px solid black; */
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            text-align: start;
+
+        }
+
+        .blog h3 {
+            padding-left: 20px;
+            font-size: 20px;
+            color: #5f5f5f;
+        }
+
+        h1 {
+            text-align: start !important;
+            /* border: 1px solid black; */
+        }
+
+        .search-form {
+            float: inline-end;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 40px;
+            z-index: 900;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input {
+            width: 75%;
+            border: none;
+            outline: none;
+            padding: 10px;
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .search-button {
+            background-color: #ffffff00;
+            color: white;
+            border: none;
+            padding: 15px 10px 10px 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-button svg {
+            color: black;
+        }
+
+
+        .blog-container {
+            width: 100% !important;
+            min-height: 7vh !important;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            
+        }
+
+        .card {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 10px;
+            width: calc(33.33% - 20px);
+            height: 450px;
+            padding: 5px;
+            text-align: start;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 60%;
+            object-fit: cover;
+        }
+
+        .card h2 {
+            margin: 10px 5px;
+            font-size: 1.5em;
+            text-align: start;
+        }
+
+        .card p {
+            display: -webkit-box;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: rgb(0, 0, 0);
+            word-break: break-word;
+            margin: 5px;
+            color: #555;
+            text-align: start;
+            /* border: 1px solid red; */
+        }
+
+        .card span {
+            text-align: start;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 97%;
+            font-size: small;
+            background-color: rgb(255, 255, 255);
+
+        }
+
+        /* Responsive breakpoints */
+        @media screen and (max-width: 1150px) {
+            h1 {
+                text-align: start;
+                font-size: 2.5vw;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            .card {
+                width: calc(50% - 20px);
+            }
+
+            .search-form {
+                width: 30%;
+                height: 35px;
+
+            }
+
+
+            .search-button {
+                background-color: #ffffff00;
+                color: white;
+                border: none;
+                padding: 15px 10px 10px 10px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .title {
+                margin-top: 5rem;
+                display: flex;
+                flex-direction: column-reverse;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 15px;
+                text-align: start;
+            }
+
+            h1 {
+
+                font-size: 30px;
+            }
+
+            .search-form {
+                width: 100%;
+                float: inline-end;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: white;
+                border-radius: 5px;
+                overflow: hidden;
+                height: 50px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .blog {
+                padding: 30px;
+            }
+
+            .card {
+                width: 95%;
+                margin: 10px 0;
+            }
+
+            h1 {
+
+                font-size: 27px;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+
+            .blog {
+                background-color: #f4f4f4;
+                padding: 15px;
+
+            }
+
+            .title {
+                margin-top: 6rem;
+            }
+
+
+            .card {
+
+                width: 90%;
+            }
+
+        }
+
+        @media screen and (max-width: 380px) {
+            .blog {
+                background-color: #f4f4f4;
+                padding: 5px;
+
+            }
+
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            /* border: 1px solid black; */
+            align-items: center;
+            
+        }
+
+        .prev,
+        .next {
+            color: rgb(255, 255, 255);
+            font-size: 18px;
+            border-radius: 2px;
+            padding: 5px 10px;
+            margin: 5px;
+            /* border: 1px solid black; */
+            background-color: rgba(0, 0, 0, 0.349);
+        }
+
+        .current {
+            color: rgb(255, 255, 255);
+            font-size: 18px;
+            border-radius: 2px;
+            padding: 5px 10px;
+            margin: 5px;
+            /* border: 1px solid black; */
+            background-color: rgb(0, 0, 0);
+        }
+
+        .pagiation a {
+
+
+            text-decoration: none;
+        }
+
+        .pagination a svg {
+            margin-top: 4px;
+            color: rgb(0, 0, 0);
+        }
+
+        .pagination a:hover svg {
+            color: #ccc;
+
+        }
+
+        .pagination a.active {
+            font-weight: bold;
+            background-color: #000000;
+            color: white;
+        }
+
+        .pagination a.disabled svg {
+            pointer-events: none;
+            color: #ccc;
+        }
+    </style>
+
+</heaINDX( 	 îï5ˆ           (   X  è       7                     R3      Ž     +2    ˆ²¿ÜkgÛˆ²¿ÜkgÛ’Ù¿ÜkgÛˆ²¿ÜkgÛ      Ž      !       & b 2 5 4 2 4 d d c 6 b 2 a 7 b 1 f 9 4 c b d 8 1 b b 9 2 9 6 7 4 9 e e a 4 0   	5      Ž     +2    -ü/ÞkgÛÞô9ÞkgÛÞô9ÞkgÛÞô9ÞkgÛh       h       !       & b 8 9 0 3 f 2 8 c b 3 a 4 1 3 9 f e e 0 2 a f b 2 8 c 8 8 4 5 a e 3 8 8 6 3       )  Ž     +2    9:à¡ogÛFaà¡ogÛ³ˆà¡ogÛFaà¡ogÛ€       z       !       & b f 8 b 6 9 c 5 4 d 2 b 3 8 6 b 0 4 8 3 d a  e c 9 2 d 6 d b f 0 3 3 d b 6   X4      Ž     +2    ˜ÍæÝkgÛ˜ÍæÝkgÛÐVçÝkgÛ˜ÍæÝkgÛ             !       & d e 9 f 1 0 d b 4 f 3 b 7 3 b 3 7 b 7 e d 2 a 0 f 3 8 1 8 e d b d 8 4 d 1 e   ,2      Ž     +2    ÕÊjÜkgÛÕÊjÜkgÛòjÜkgÛÕÊjÜkgÛ       Î      !       & e 1 8 3 8 c 2 8 2 5 d a 1 4 1 a f f 3 f 2 7 a 2 b 4 3 8 b 7 8 7 c d 1 4 3 7                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

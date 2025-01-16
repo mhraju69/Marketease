@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="icon" type="image/png" href="/static/images/v28_2.png">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- CSS -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white !important;
+        }
+    </style>
+
+    <style>
+        .container-3 {
+            padding: 10px;
+            margin-top: 7rem;
+            background-color: rgb(250, 250, 250);
+            border-radius: 10px;
+            width: 85%;
+            /* border: 1px solid black; */
+        }
+
+        .container-3 img {
+            width: 50%;
+            
+            object-fit: cover;
+            margin-left: 0;
+            border-radius: 10px;
+            float: left;
+            margin-right: 20px;
+        }
+
+        .container-3 .text-3 {
+            line-height: 28px;
+            height: 100%;
+            /* border: 1px solid black; */
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            padding-top: 1rem;
+        }
+
+        .container-3 .text-3 p {
+            margin-top: 2rem;
+            line-height: 30px;
+            font-size: 18px;
+
+            font-family: 'Times New Roman', sans-serif;
+
+        }
+
+        .container-3 .text-3 p span {
+            font-size: 25px;
+            color: rgb(131, 220, 255);
+        }
+
+        .container-3 button {
+            text-decoration: none;
+            padding: 11px 30px;
+            background-color: rgb(131, 220, 255);
+            border: none;
+            scale: 1.2;
+            color: rgb(255, 255, 255);
+            transition: color 0.5s ease;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: "Gill Sans", sans-serif;
+
+
+            margin-left: 12px;
+
+        }
+
+        .container-3 a {}
+
+        .container-3 button:hover {
+            color: rgb(0, 0, 0);
+
+        }
+
+
+        @media screen and (max-width: 860px) {
+            .container-3 {
+                width: 85%;
+
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-top: 1rem;
+            }
+
+            .container-3 img {
+                width: 100%;
+                margin-bottom: 1rem;
+                /* border: 1px solid black;  */
+
+            }
+
+            .container-3 .text-3 pre {
+                margin-top: 0;
+                color: black;
+                text-wrap: wrap;
+                font-size: 18px;
+                font-family: 'Times New Roman', sans-serif;
+                /* border: 1px solid black; */
+            }
+
+            .container-3 .text-3 pre span {
+                font-size: 22px;
+                color: rgb(131, 220, 255);
+            }
+
+            .container-3 button {
+                scale: 1;
+                text-decoration: none;
+                padding: 13px 25px;
+                margin-left: 0;
+                border: none;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body class="sub-page">
+    {% include "nav.html" %}
+
+
+
+    <div class="container-3">
+        <img src='{% static "images/saieb.jpg" %}' alt="Image">
+        <div class="text-3">
+            <h1>About Us</h1>
+            <p>
+                Welcome to MarketEase, your trusted partner for business growth and success. We specialize in providing simple, effective, and affordable solutions for businesses of all sizes. Whether you’re just starting or looking to expand, we offer tailored services like digital marketing, branding, and sales strategies to help you reach your goals. With expertise in both local and global markets, we create unique plans to promote your business and attract more customers. Our services include SEO, social media marketing, email campaigns, and brand building—all designed to boost your sales and strengthen your brand. At MarketEase, we focus on providing affordable, reliable, and results-driven solutions to make your business stand out in today’s competitive market. Let us help you grow and achieve your dreams with smart strategies that work for you. Choose MarketEase and take your business to the next level!</p>
+        </div>
+    </div>
+
+    {% include "staff.html" %}
+    {% include "review.html" %}
+    {% include "chooseus.html" %}
+    {% include "footer.html" %}
+
+</body>
+
+</html>

@@ -1,0 +1,435 @@
+{% load static %}
+<style>
+    .projects {
+        max-width: 100vw;
+        margin-top: 6rem;
+        margin-left: 1rem;
+        height: auto;
+        width: auto;
+        /* border: 1px solid rgb(255, 0, 0); */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* align-items: center; */
+        padding: 0 120px !important;
+    }
+
+    .projects h1 {
+        font-family: "Oxygen", serif;
+        font-weight: 700;
+        font-style: normal;
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 2rem;
+        /* border: 1px solid black; */
+    }
+
+    .projects h1 span {
+        color: #ff5e00;
+    }
+
+    .projects .p-cards {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        /* flex-wrap: wrap; */
+        /* border: 1px solid rgb(36, 58, 255); */
+        justify-content: space-between;
+
+    }
+
+    .projects .p-cards .card-big {
+
+        /* border: 1px solid black; */
+        height: 680px;
+        width: 45vw;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.404);
+        border-radius: 25px;
+        object-fit: cover;
+        overflow: hidden;
+
+
+
+    }
+
+    .card-big img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transform: translateY(-1rem);
+        transition: transform .5s ease-in-out;
+    }
+
+    .card-big h2 {
+        font-family: "Oxygen", serif;
+        font-weight: 700;
+        font-style: normal;
+        padding: 0;
+        color: rgb(0, 0, 0);
+        font-size: 25px;
+        margin: 1rem 0;
+        /* border:1px solid green; */
+    }
+
+    .card-big .details {
+        display: flex;
+        flex-direction: column;
+        color: rgb(0, 0, 0);
+        padding: .7rem;
+        padding-top: 0;
+        background-color: rgb(255, 255, 255);
+        height: auto;
+        max-width: 100%;
+        border-radius: 25px;
+        overflow: hidden;
+        transform: translateY(-67px);
+        transition: transform .7s ease-in-out;
+        /* border: 2px solid red; */
+    }
+
+    .card-big .details .info {
+        /* border: 2px solid red; */
+        font-family: "Oxygen", serif;
+        font-weight: 500;
+        font-style: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 7;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgb(0, 0, 0);
+        word-break: break-word;
+        margin-bottom: .5rem;
+
+    }
+
+    .card-big:hover .details {
+        transform: translateY(-100%);
+    }
+
+    .card-big:hover img {
+
+        transform: translateY(-2rem);
+        transition: transform .5s ease-in-out;
+    }
+
+
+    .card-big .details a, .cards-small .details a {
+        width: 100px;
+        padding: 8px;
+        border-radius:  5px 5px 5px 20px ;
+        /* border-bottom-left-radius: 20px !important; */
+        font-family: "Oxygen", serif;
+        font-weight: 500;
+        font-style: normal;
+        color: #ffffff;
+        text-decoration: none;
+        background-color: rgba(0, 0, 0, 0.63);
+        text-align: center;
+        transition: color .3s ease-in-out;
+        margin-bottom: 5px;
+    }
+
+
+
+
+
+
+
+
+
+    .projects .p-cards .cards-small {
+        /* border: 1px solid rgb(115, 255, 0); */
+
+        height: 700px;
+        width: 45vw;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+
+    }
+
+    .projects .p-cards .cards-small .small-card {
+        /* border: 1px solid rgb(115, 255, 0); */
+        height: 47%;
+        width: 45%;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.404);
+        border-radius: 25px;
+        overflow: hidden;
+        border: none;
+
+
+    }
+
+
+
+    .small-card img {
+
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transform: translateY(-1rem);
+        transition: transform .5s ease-in-out;
+    }
+
+
+    .small-card .details {
+        display: flex;
+        flex-direction: column;
+        color: rgb(0, 0, 0);
+        word-wrap: break-word;
+        /* border : 1px solid red; */
+        padding: .7rem;
+        padding-top: 0;
+        background-color: rgb(255, 255, 255);
+        height: auto;
+        max-width: 100%;
+
+        border-radius: 25px;
+        overflow: hidden;
+        transform: translateY(-60px);
+        transition: transform .7s ease-in-out;
+    }
+
+
+
+    .small-card h2 {
+        font-family: "Oxygen", serif;
+        font-weight: 700;
+        font-style: normal;
+        height: auto;
+        align-items: center;
+        padding: 0;
+        color: rgb(0, 0, 0);
+        font-size: larger;
+        margin: 1rem 0;
+
+        /* border: 1px solid red; */
+
+    }
+
+    .small-card .details .info {
+        color: rgb(0, 0, 0);
+        font-family: "Oxygen", serif;
+        font-weight: 500;
+        font-style: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgb(0, 0, 0);
+        word-break: break-word;
+        margin-bottom: .5rem;
+    }
+
+    .small-card:hover .details {
+        transform: translateY(-100%);
+    }
+
+    .small-card:hover img {
+
+        transform: translateY(-2rem);
+        transition: transform .5s ease-in-out;
+    }
+
+    .projects button {
+        text-decoration: none;
+        padding: 11px 30px;
+        background-color: #ff5e00;
+        border: none;
+        scale: 1;
+        font-size: 17px;
+        color: rgb(255, 255, 255);
+        transition: color 0.5s ease;
+        border-radius: 3px;
+        cursor: pointer;
+        font-family: "Oxygen", serif;
+        font-weight: 500;
+        font-style: normal;
+        margin-bottom: 2rem;
+    }
+
+    .projects a {
+        font-family: 'Times New Roman', sans-serif;
+    }
+
+    .projects button:hover {
+        color: rgb(0, 0, 0);
+
+    }
+
+    /* 1080px স্ক্রিনের জন্য মিডিয়া কোয়েরি */
+    @media (max-width: 1080px) {
+        .projects {
+            padding: 0 60px !important;
+            margin-left: -2.5px;
+        }
+
+        .projects .p-cards {
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .projects .p-cards .card-big {
+            width: 83vw;
+            height: 500px;
+            margin-bottom: 1rem;
+        }
+
+        .projects .p-cards .cards-small {
+            width: 100%;
+        }
+
+        .projects .p-cards .cards-small .small-card {
+            width: 48%;
+            height: 45%;
+        }
+    }
+
+    /* 786px স্ক্রিনের জন্য মিডিয়া কোয়েরি */
+    @media (max-width: 786px) {
+        .projects {
+            padding: 0 20px !important;
+        }
+
+        .projects h1 {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .projects .p-cards .card-big {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .projects .p-cards .cards-small {
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+        }
+
+        .projects .p-cards .cards-small .small-card {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 1rem;
+        }
+
+        .card-big h2,
+        .small-card h2 {
+            font-size: 20px;
+        }
+
+        .projects button {
+            scale: 1;
+            width: 100%;
+        }
+    }
+</style>
+
+
+<div class="projects">
+    <h1>Take a Look at Our Recent <span>Projects.</span></h1>
+    <div class="p-cards">
+        <div class="card-big">
+            <img src='{% static "images/p1.jpg" %}' alt="">
+            <span class="details">
+                <h2>Build ecommerce website</h2>
+                <p class="info">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia ex quaerat dolore
+                    officiis
+                    consequuntur illo fuga debitis tempora, reprehenderit aliquid facilis omnis cumque.
+                    Magni
+                    quasi expedita commodi hic quaerat et nihil ex. Dolores ex aspernatur nisi fugiat eius,
+                    similique veniam cumque velit minus obcaecati maiores ullam, deserunt amet nesciunt? Ea!
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis assumenda ad totam
+                    quidem,
+                    adipisci inventore impedit illum quam veniam sint. Lorem ipsum dolor sit amet
+                    consectetur
+                    adipisicing elit. Fuga iusto eaque eos fugit ea nobis, neque debitis facilis voluptatum
+                    numquam suscipit harum autem, porro eveniet sunt quasi ab tempora ullam nulla
+                    voluptates.
+                    Esse veritatis nihil blanditiis possimus deleniti, odio delectus, maiores consequuntur
+                    laboriosam corrupti praesentium qui ex corporis reiciendis voluptate.
+
+                </p>
+                <a href="#">See More</a>
+            </span>
+        </div>
+
+        <div class="cards-small">
+            <div class="small-card">
+                <img src='{% static "images/p1.jpg" %}' alt="">
+                <span class="details">
+                    <h2>Product Sourcing</h2>
+                    <p class="info">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam sunt culpa optio,
+                        delectus totam exercitationem fugiat labore aut odio natus quidem voluptate corrupti
+                        molestias et blanditiis eveniet deserunt, obcaecati fuga officiis ab saepe beatae.
+                        Autem
+                        harum sequi excepturi ab, qui consequuntur laborum eaque unde optio, ullam sint.
+                        Impedit, nam maxime?
+                    </p>
+                    <a href="#">See More</a>
+                </span>
+            </div>
+            <div class="small-card">
+                <img src='{% static "images/p1.jpg" %}' alt="">
+                <span class="details">
+                    <h2>Product Sourcing</h2>
+                    <p class="info">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam sunt culpa optio,
+                        delectus totam exercitationem fugiat labore aut odio natus quidem voluptate corrupti
+                        molestias et blanditiis eveniet deserunt, obcaecati fuga officiis ab saepe beatae.
+                        Autem
+                        harum sequi excepturi ab, qui consequuntur laborum eaque unde optio, ullam sint.
+                        Impedit, nam maxime?
+                    </p>
+                    <a href="#">See More</a>
+                </span>
+            </div>
+            <div class="small-card">
+                <img src='{% static "images/p1.jpg" %}' alt="">
+                <span class="details">
+                    <h2>Product Sourcing</h2>
+                    <p class="info">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam sunt culpa optio,
+                        delectus totam exercitationem fugiat labore aut odio natus quidem voluptate corrupti
+                        molestias et blanditiis eveniet deserunt, obcaecati fuga officiis ab saepe beatae.
+                        Autem
+                        harum sequi excepturi ab, qui consequuntur laborum eaque unde optio, ullam sint.
+                        Impedit, nam maxime? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Impedit
+                        voluptate, praesentium quibusdam iste cupiditate voluptates.
+                        <a href="#">see more</a>
+                    </p>
+                    <a href="#">See More</a>
+                </span>
+            </div>
+            <div class="small-card">
+                <img src='{% static "images/p1.jpg" %}' alt="">
+                <span class="details">
+                    <h2>Product Sourcing</h2>
+                    <p class="info">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam sunt culpa optio,
+                        delectus totam exercitationem fugiat labore aut odio natus quidem voluptate corrupti
+
+                    </p>
+                    <a href="#">See More</a>
+                </span>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <a href="www.x.com"><button>See All</button></a>
+
+</div>

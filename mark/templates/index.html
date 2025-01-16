@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="icon" type="image/png" href="/static/images/v28_2.png">
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    
+  }
+  .body{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<body class="landing-page">
+  {% include "loader.html" %}
+  {% include "nav.html" %}
+  {% include "home.html" %}
+
+  {% include "welcome.html" %}
+  {% include "decor.html" %}
+  {% include "r_projects.html" %}
+  
+
+  {% include "review.html" %}
+  {% include "footer.html" %}
+
+</body>
+</html>

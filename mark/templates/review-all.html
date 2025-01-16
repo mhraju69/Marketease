@@ -1,0 +1,362 @@
+{% load static %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Freehand&family=Parisienne&display=swap');
+    body{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .review {
+        width: 90%;
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* border: 1px solid black; */
+    }
+
+
+    .review .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Times New Roman', sans-serif;
+        margin-top: 2rem;
+        /* border: 1px solid black; */
+        width: 100%;
+    }
+
+    .review .title p {
+        font-size: 50px;
+        font-weight: 600;
+
+        /* border: 1px solid black; */
+    }   
+
+    #primary {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        align-items: center;
+        border: none;
+        /* border: 1px solid rgb(255, 0, 0); */
+
+    }
+
+    .testimonial {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        margin-bottom: 3rem;
+        /* border: 1px solid black; */
+
+    }
+
+    .testimonial .thumbnail img {
+        height: 130px;
+        width: 130px;
+        object-fit: cover;
+        border: 5px solid rgb(255, 255, 255);
+        z-index: 1000;
+        box-shadow:
+            -5px 0 5px rgba(0, 0, 0, 0.2),
+            /* Left shadow */
+            5px 0 5px rgba(0, 0, 0, 0.2);
+        /* Right shadow */
+
+    }
+
+    .testimonial .testimonial-text {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-left: 1rem;
+        /* border: 1px solid black; */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.363);
+
+    }
+
+    .testimonial .testimonial-text .txt {
+        color: black;
+        font-family: 'Times New Roman', sans-serif;
+        width: 100%;
+        
+        line-height: 20px;
+    }
+
+    .testimonial-text .name {
+
+        margin: 0;
+        font-size: 22px;
+        font-weight: 550;
+        margin-top: 5px;
+
+        /* border: 1px solid black; */
+
+    }
+
+
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .review button {
+        text-decoration: none;
+        padding: 11px 30px;
+        background-color: #5dade2;
+        border: none;
+        scale: 1.2;
+        /* border: 1px solid #000000; */
+        color: rgb(255, 255, 255);
+        transition: color 0.5s ease;
+        border-radius: 3px;
+        cursor: pointer;
+        font-family: 'Times New Roman', Times, serif;
+
+        margin: 0 20px;
+        margin-bottom: 2rem;
+
+    }
+
+    .review a {
+        font-family: "Gill Sans", sans-serif;
+    }
+
+    .review button:hover {
+        color: rgb(0, 0, 0);
+
+    }
+
+    @media (max-width: 1050px) {
+        .testimonial {
+            /* border: 1px solid red; */
+            width: 100%;
+            margin: 10px;
+            height: auto;
+            /* কার্ডের প্রস্থ পুরোপুরি কলামের মধ্যে রাখা */
+            flex-direction: column;
+            /* ইমেজ এবং টেক্সটকে উপর-নিচে রাখা */
+            align-items: center;
+            /* সবকিছু সেন্টারে রাখা */
+            text-align: center;
+            /* টেক্সট সেন্টার করা */
+        }
+
+        .testimonial .thumbnail img {
+            width: 100px;
+            /* ইমেজ সাইজ ঠিক রাখা */
+            height: 100px;
+            margin-bottom: 0rem;
+            /* ইমেজের নিচে কিছু মার্জিন যোগ করা */
+        }
+
+        .testimonial .testimonial-text {
+            width: 90%;
+            /* টেক্সটের প্রস্থ 90% রাখা */
+            margin-left: 0;
+            /* মার্জিন রিসেট করা */
+        }
+
+        .testimonial-text .name {
+            justify-content: center;
+
+            /* নামের অংশ সেন্টারে রাখা */
+        }
+
+        .testimonial-text .name p {
+            text-align: center;
+            padding: 7px;
+        }
+
+        .review button {
+
+            margin-top: 2rem;
+        }
+    }
+
+    @media (max-width: 500px) {
+
+
+        .review .title span .top {
+
+            width: 80px;
+
+        }
+
+        .review .title span .middle {
+
+            width: 100px;
+
+        }
+
+        .review .title span .bottom {
+
+            width: 120px;
+
+        }
+
+        .testimonial {
+            width: 100%;
+            /* পুরো প্রস্থ ব্যবহার করা */
+            flex-direction: column;
+            /* ইমেজ এবং টেক্সট উপর-নিচে রাখা */
+            align-items: center;
+            /* সবকিছু সেন্টারে রাখা */
+            padding: 1rem;
+            /* কিছু প্যাডিং যোগ করা */
+            margin: 0;
+            text-align: center;
+            /* টেক্সট সেন্টার করা */
+        }
+
+        .testimonial .thumbnail img {
+            width: 80px;
+            /* ইমেজের প্রস্থ কমানো */
+            height: 80px;
+            margin-bottom: 1rem;
+            /* ইমেজের নিচে মার্জিন */
+        }
+
+        .testimonial .testimonial-text {
+            width: 100%;
+            /* টেক্সটের প্রস্থ পুরোপুরি রাখা */
+            margin-left: 0;
+            /* বাম দিকের মার্জিন রিসেট */
+        }
+
+        .testimonial-text .txt {
+            font-size: 14px;
+            /* ফন্ট সাইজ ছোট করা */
+        }
+
+        .testimonial-text .name {
+            justify-content: center;
+            /* নামের অংশ সেন্টারে রাখা */
+            padding-left: 0;
+            /* প্যাডিং রিসেট */
+        }
+
+        .testimonial-text .name p {
+            text-align: center;
+            padding-left: 15px;
+        }
+
+        .review .title h1 {
+            font-size: 24px;
+            /* শিরোনামের ফন্ট সাইজ ছোট করা */
+        }
+
+        .review button {
+            padding: 8px 20px;
+            /* বাটনের প্যাডিং ঠিক রাখা */
+            font-size: 7px;
+        }
+    }
+
+    @media (max-width: 420px) {
+
+
+
+
+
+
+        .testimonial {
+            width: 100%;
+            /* পুরো প্রস্থ ব্যবহার করা */
+            flex-direction: column;
+            /* ইমেজ এবং টেক্সট উপর-নিচে রাখা */
+            align-items: center;
+            /* এলিমেন্টগুলো সেন্টারে রাখা */
+            padding: 1rem;
+            /* কিছু প্যাডিং যোগ করা */
+            text-align: center;
+            /* টেক্সট সেন্টার করা */
+        }
+
+        .testimonial .thumbnail img {
+            width: 70px;
+            /* ইমেজের প্রস্থ ছোট করা */
+            height: 70px;
+            /* ইমেজের উচ্চতা ছোট করা */
+            margin-bottom: 0.5rem;
+            /* ইমেজের নিচে মার্জিন কমানো */
+        }
+
+        .testimonial .testimonial-text {
+            width: 100%;
+            /* টেক্সটের প্রস্থ পুরোপুরি রাখা */
+            margin-left: 0;
+            /* বামদিকের মার্জিন রিসেট করা */
+        }
+
+        .testimonial-text .txt {
+            font-size: 13px;
+            /* টেক্সটের ফন্ট সাইজ ছোট করা */
+        }
+
+        .testimonial-text .name {
+            justify-content: center;
+            /* নামের অংশ সেন্টারে রাখা */
+            padding-left: 0;
+            /* প্যাডিং রিসেট করা */
+            font-size: 14px;
+            /* নামের ফন্ট সাইজ ছোট করা */
+        }
+
+        .testimonial-text .name p {
+            text-align: center;
+            padding-left: 7px;
+        }
+
+        .review .title h1 {
+            font-size: 20px;
+            /* শিরোনামের ফন্ট সাইজ ছোট করা */
+        }
+
+        .review button {
+            padding: 8px 16px;
+            /* বাটনের প্যাডিং কমানো */
+            font-size: 12px;
+            /* বাটনের ফন্ট সাইজ ছোট করা */
+        }
+    }
+</style>
+<body class="sub-page">
+    {% include "nav.html" %}
+    <div class="review ">
+        <div class="title">
+            <p>What our clint says about us</p>
+        </div>
+        <div id="primary" class="layout-sidebar-no home-section">
+    
+    
+            {%for i in review%}
+            <div class="testimonial two-fourth">
+                <div class="thumbnail"> <img width="94" height="94" src='{{i.image.url}}'
+                        class="attachment-thumb_testimonial wp-post-image" alt="website template image" title="">
+                </div>
+                <div class="testimonial-text">
+                    <p class="name">{{i.name}}</p>
+                    <p class="txt">{{i.review}}
+                    </p>
+                </div>
+    
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>

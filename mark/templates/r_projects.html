@@ -1,0 +1,352 @@
+{% load static %}
+<style>
+
+
+    .blog {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        /* border: 1px solid black; */
+    }
+
+    .blog h1 {
+        font-family: "Oxygen", serif;
+        font-weight: 700;
+        font-style: normal;
+        width: auto;
+        text-align: center;
+        font-size: 40px;
+        color: white;
+        margin: 4rem 0 2rem 0;
+        transform: skewX(-15deg);
+        background-color: #000000;
+        padding: 5px 15px;
+        /* border-bottom: 2px solid black; */
+        /* border: 1px solid black; */
+    }
+
+
+    .blog h1 span {
+        color: #ff5e00;
+    }
+
+    .blog-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        /* border: 1px solid rgb(255, 105, 105); */
+    }
+
+    .card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin: 10px;
+        width: calc(32% - 20px);
+        height: 450px;
+        padding: 5px;
+        text-align: start;
+        transition: transform 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+    }
+
+    .card img {
+        width: 100%;
+        border-radius: 10px;
+        height: 60%;
+        object-fit: cover;
+    }
+
+
+
+
+
+    @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(80px);
+      transition: opacity .3s ease-in-out;
+
+
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+
+
+
+
+
+
+    .card h2 {
+
+        margin: 10px 5px;
+        font-size: 1.5em;
+        text-align: start;
+    }
+
+    .card a {
+        text-decoration: none;
+        color: black;
+        font-family: "Oxygen", serif;
+
+    }
+
+    .card p {
+        display: -webkit-box;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgb(0, 0, 0);
+        word-break: break-word;
+        margin: 5px;
+        color: #555;
+        text-align: start;
+        overflow: hidden;
+        /* border: 1px solid red; */
+    }
+
+    .card span {
+        text-align: start;
+        position: absolute;
+        bottom: 0;
+        left: 10px;
+        width: 100%;
+        font-size: small;
+        padding: 10px 0;
+        background-color: rgb(255, 255, 255);
+
+    }
+
+    /* 
+    .blog .more{
+        text-align: center;
+        width: 80px;
+        text-decoration: none;
+        padding: 11px 30px;
+        background-color: #ff5e00;
+        border: none;
+        scale: 1;
+        font-size: 17px;
+        color: rgb(255, 255, 255);
+        transition: color 0.5s ease;
+        border-radius: 3px;
+        cursor: pointer;
+        font-family: "Oxygen", serif;
+        font-weight: 500;
+        font-style: normal;
+        margin: 2rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.295);
+    } */
+
+    /* Responsive breakpoints */
+    @media screen and (max-width: 1150px) {
+        h1 {
+            text-align: start;
+            font-size: 2.5vw;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        .card {
+            width: calc(50% - 20px);
+        }
+
+        .search-form {
+            width: 30%;
+            height: 35px;
+
+        }
+
+
+        .search-button {
+            background-color: #ffffff00;
+            color: white;
+            border: none;
+            padding: 15px 10px 10px 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .title {
+            margin-top: 5rem;
+            display: flex;
+            flex-direction: column-reverse;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            text-align: start;
+        }
+
+        h1 {
+
+            font-size: 30px;
+        }
+
+        .search-form {
+            width: 100%;
+            float: inline-end;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 50px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .blog {
+            padding: 30px;
+        }
+
+        .card {
+            width: 95%;
+            margin: 10px 0;
+        }
+
+        h1 {
+
+            font-size: 27px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+
+        .blog {
+            background-color: #f4f4f4;
+            padding: 15px;
+
+        }
+
+        .title {
+            margin-top: 6rem;
+        }
+
+
+        .card {
+
+            width: 90%;
+        }
+
+    }
+
+    @media screen and (max-width: 380px) {
+        .blog {
+            background-color: #f4f4f4;
+            padding: 5px;
+
+        }
+
+    }
+
+
+
+
+    /* From Uiverse.io by KINGFRESS */
+    .more {
+        font-family: "Oxygen", serif;
+        font-weight: 500;
+        font-size: 18px;
+        font-style: normal;
+        color: white;
+        background-color: #000000;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        text-decoration: none;
+        margin: 2rem 0;
+    }
+
+    .more span:not(:nth-child(6)) {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: 30px;
+        width: 30px;
+        background-color: #0c66ed;
+        border-radius: 50%;
+        transition: .6s ease;
+    }
+
+    .more span:nth-child(6) {
+        position: relative;
+    }
+
+    .more span:nth-child(1) {
+        transform: translate(-3.3em, -4em);
+    }
+
+    .more span:nth-child(2) {
+        transform: translate(-6em, 1.3em);
+    }
+
+    .more span:nth-child(3) {
+        transform: translate(-.2em, 1.8em);
+    }
+
+    .more span:nth-child(4) {
+        transform: translate(3.5em, 1.4em);
+    }
+
+    .more span:nth-child(5) {
+        transform: translate(3.5em, -3.8em);
+    }
+
+    .more:hover span:not(:nth-child(6)) {
+        transform: translate(-50%, -50%) scale(6);
+        transition: 1.5s ease;
+    }
+</style>
+
+<div class="blog ">
+    <h1>Our Recent <span>Blog.</span></h1>
+    <div class="blog-container">
+        {%for i in blog%}
+        <div class="card">
+            <a href="{{i.url}}"><img src='{{i.image.url}}' alt="Card Image">
+                <h2>{{i.title}}</h2>
+                <p>{{i.short_details}}</p>
+
+                <span>{{i.create}}</span>
+            </a>
+
+        </div>
+        {%endfor%}
+    </div>
+    <!-- <a class="more" href="www.x.com">See All</a> -->
+    <a class="more" href="{% url 'blog' %}">
+        <span class="circle1"></span>
+        <span class="circle2"></span>
+        <span class="circle3"></span>
+        <span class="circle4"></span>
+        <span class="circle5"></span>
+        <span class="text">See More</span>
+    </a>
+</div>
